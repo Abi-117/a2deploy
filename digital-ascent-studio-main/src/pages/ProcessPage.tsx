@@ -25,7 +25,7 @@ const iconMap: any = {
   Rocket
 };
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000/api/process";
+const API = `${import.meta.env.VITE_API_URL}/process`;
 
 /* ================= TYPES ================= */
 
@@ -39,21 +39,24 @@ interface Step {
 
 const ProcessPage = () => {
   const [steps, setSteps] = useState<Step[]>([]);
+  const [loading, setLoading] = useState(true);
 
   /* ================= FETCH DATA ================= */
 
   useEffect(() => {
-    const fetchSteps = async () => {
-      try {
-        const res = await axios.get(API);
-        setSteps(res.data);
-      } catch (err) {
-        console.log("Process fetch error:", err);
-      }
-    };
+  const fetchSteps = async () => {
+    try {
+      const res = await axios.get(API);
+      setSteps(res.data);
+    } catch (err) {
+      console.log("Process fetch error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchSteps();
-  }, []);
+  fetchSteps();
+}, []);
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">

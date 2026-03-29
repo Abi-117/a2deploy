@@ -11,8 +11,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import * as Icons from "lucide-react";
 import PricingSection from "./PricingSection";
+const API = `${import.meta.env.VITE_API_URL}/services`;
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000/api/services";
+
 
 // const services = [
 //   {
@@ -63,15 +64,22 @@ const additionalServices = [
 
 const ServicesPage = () => {
    const [services, setServices] = useState<any[]>([]);
+   
 
-  useEffect(() => {
-    load();
-  }, []);
+   useEffect(() => {
+  load();
+}, []);
 
 const load = async () => {
+  try {
     const res = await axios.get(API);
     setServices(res.data);
-  };
+  } catch (err) {
+    console.error("Service load error:", err);
+  }
+};
+
+
   return (
   <div className="min-h-screen bg-background overflow-x-hidden">
     <CursorFollower />
@@ -171,7 +179,7 @@ const load = async () => {
                     <div
                       className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center`}
                     >
-                      {Icon && <Icon size={30} />}
+                       {Icon ? <Icon size={30} /> : <Code2 size={30} />}
                     </div>
 
                     <div className="flex-1">
