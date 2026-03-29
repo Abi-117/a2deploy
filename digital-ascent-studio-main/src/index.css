@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    --background: 230 25% 5%;
+    --foreground: 210 40% 95%;
+
+    --card: 230 25% 8%;
+    --card-foreground: 210 40% 95%;
+
+    --popover: 230 25% 8%;
+    --popover-foreground: 210 40% 95%;
+
+    --primary: 260 80% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 230 25% 12%;
+    --secondary-foreground: 210 40% 95%;
+
+    --muted: 230 20% 14%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 200 90% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 230 20% 16%;
+    --input: 230 20% 16%;
+    --ring: 260 80% 60%;
+
+    --radius: 0.75rem;
+
+    --neon-purple: 260 80% 60%;
+    --neon-blue: 200 90% 50%;
+    --neon-pink: 320 80% 55%;
+    --glass: 230 25% 10%;
+    --glass-border: 230 20% 20%;
+
+    --sidebar-background: 230 25% 5%;
+    --sidebar-foreground: 210 40% 95%;
+    --sidebar-primary: 260 80% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 230 25% 12%;
+    --sidebar-accent-foreground: 210 40% 95%;
+    --sidebar-border: 230 20% 16%;
+    --sidebar-ring: 260 80% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  ::selection {
+    background: hsl(260 80% 60% / 0.3);
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-glass/50 backdrop-blur-xl border border-glass-border/30 rounded-xl;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-500 hover:border-neon-purple/40 hover:shadow-[0_0_30px_-5px_hsl(260_80%_60%_/_0.3)];
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-neon-purple via-neon-blue to-neon-pink;
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 40px -10px hsl(260 80% 60% / 0.4);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 40px -10px hsl(200 90% 50% / 0.4);
+  }
+
+  .animated-gradient-bg {
+    background: linear-gradient(-45deg, 
+      hsl(230 25% 5%), 
+      hsl(250 30% 10%), 
+      hsl(220 35% 8%), 
+      hsl(270 25% 8%)
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+
+  .section-padding {
+    @apply py-24 md:py-32 px-4 md:px-8;
+  }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 6s ease-in-out infinite 2s;
+}
+
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite 1s;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+}
