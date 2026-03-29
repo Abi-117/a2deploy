@@ -7,7 +7,7 @@ import { Code2, Search, Megaphone, Target, Palette, ArrowRight, Check, Layers, B
 import { BlurIn } from "@/components/AnimationUtils";
 
 
-const API = `${import.meta.env.VITE_API_URL}/services`;
+const API = `${import.meta.env.VITE_API_URL}/pricing`;
 
 export default function PricingSection() {
 
