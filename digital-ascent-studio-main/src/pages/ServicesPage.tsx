@@ -11,6 +11,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import * as Icons from "lucide-react";
 import PricingSection from "./PricingSection";
+
 const API = `${import.meta.env.VITE_API_URL}/services`;
 
 

@@ -354,7 +354,7 @@ const AboutPage = () => {
 </section>
 
     {/* Team */}
-    <section className="section-padding relative">
+    {/* <section className="section-padding relative">
       <div className="container mx-auto">
         <BlurIn className="text-center mb-16">
           <span className="text-neon-purple text-sm font-semibold uppercase tracking-widest">Our Team</span>
@@ -396,7 +396,7 @@ const AboutPage = () => {
 })}
         </StaggerContainer>
       </div>
-    </section>
+    </section> */}
 
     {/* CTA */}
     <section className="section-padding">
