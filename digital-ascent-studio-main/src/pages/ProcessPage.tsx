@@ -88,92 +88,150 @@ const ProcessPage = () => {
       </section>
 
       {/* PROCESS STEPS */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-5xl">
-          <div className="relative">
+      <section className="py-14 sm:py-16 md:py-20 px-3 sm:px-4">
+  <div className="container mx-auto max-w-5xl">
+    <div className="relative">
 
-            <div className="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-neon-purple/50 via-neon-blue/50 to-neon-purple/20" />
+      {/* TIMELINE LINE */}
+      <div className="
+        absolute
+        left-2 sm:left-4 md:left-8
+        top-0 bottom-0
+        w-px
+        bg-gradient-to-b
+        from-neon-purple/50
+        via-neon-blue/50
+        to-neon-purple/20
+      " />
 
-            {steps.map((step, i) => {
+      {steps.map((step, i) => {
 
-              // ✅ Correct Dynamic Icon
-              const IconComponent =
-                iconMap[step.icon] || Lightbulb;
+        const IconComponent =
+          iconMap[step.icon] || Lightbulb;
 
-              return (
-                <ScrollReveal key={step._id} delay={i * 0.15}>
-                  <div className="relative pl-16 md:pl-24 mb-6 last:mb-10">
+        return (
+          <ScrollReveal key={step._id} delay={i * 0.15}>
+            <div className="
+              relative
+              pl-10 sm:pl-14 md:pl-24
+              mb-8 md:mb-10
+            ">
 
-                    {/* DOT */}
-                    <motion.div
-                      className="absolute left-4 md:left-8 w-4 h-4 rounded-full bg-neon-purple -translate-x-1/2 glow-purple z-10"
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3, type: "spring" }}
+              {/* DOT */}
+              <motion.div
+                className="
+                  absolute
+                  left-2 sm:left-4 md:left-8
+                  w-3 h-3 md:w-4 md:h-4
+                  rounded-full
+                  bg-neon-purple
+                  -translate-x-1/2
+                  glow-purple
+                  z-10
+                "
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, type: "spring" }}
+              />
+
+              {/* STEP NUMBER */}
+              <motion.div
+                className="
+                  absolute
+                  left-6 sm:left-10 md:left-16
+                  top-0
+                  text-3xl sm:text-5xl md:text-6xl
+                  font-heading font-bold
+                  text-neon-purple/5
+                  select-none
+                "
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
+                0{i + 1}
+              </motion.div>
+
+              {/* CARD */}
+              <GlowCard className="p-4 sm:p-6 md:p-8 relative">
+
+                <div className="flex items-start gap-3 sm:gap-4 mb-4">
+
+                  {/* ICON */}
+                  <motion.div
+                    className="
+                      w-9 h-9
+                      sm:w-10 sm:h-10
+                      md:w-12 md:h-12
+                      rounded-xl md:rounded-2xl
+                      bg-neon-purple/10
+                      flex items-center justify-center
+                      shrink-0
+                    "
+                    whileHover={{ rotate: 10, scale: 1.1 }}
+                  >
+                    <IconComponent
+                      size={18}
+                      className="text-neon-purple md:w-[22px] md:h-[22px]"
                     />
+                  </motion.div>
 
-                    {/* NUMBER */}
-                    <motion.div
-                      className="absolute left-10 md:left-16 top-0 text-6xl font-heading font-bold text-neon-purple/5"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      0{i + 1}
-                    </motion.div>
+                  <div>
+                    <span className="text-neon-purple font-heading font-bold text-xs sm:text-sm">
+                      Step {i + 1}
+                    </span>
 
-                    <GlowCard className="p-8 relative">
-                      <div className="flex items-start gap-4 mb-4">
-
-                        {/* ICON */}
-                        <motion.div
-                          className="w-12 h-12 rounded-2xl bg-neon-purple/10 flex items-center justify-center shrink-0"
-                          whileHover={{ rotate: 10, scale: 1.1 }}
-                        >
-                          <IconComponent
-                            size={22}
-                            className="text-neon-purple"
-                          />
-                        </motion.div>
-
-                        <div>
-                          <span className="text-neon-purple font-heading font-bold text-sm">
-                            Step {i + 1}
-                          </span>
-                          <h3 className="font-heading text-2xl font-bold">
-                            {step.title}
-                          </h3>
-                        </div>
-                      </div>
-
-                      <p className="text-muted-foreground mb-4 leading-relaxed">
-                        {step.desc}
-                      </p>
-
-                      <div className="grid grid-cols-2 gap-2">
-                        {step.details?.map((d, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center gap-2 text-sm text-muted-foreground"
-                          >
-                            <CheckCircle
-                              size={14}
-                              className="text-neon-purple shrink-0"
-                            />
-                            {d}
-                          </div>
-                        ))}
-                      </div>
-                    </GlowCard>
+                    <h3 className="
+                      font-heading
+                      text-lg sm:text-xl md:text-2xl
+                      font-bold
+                      leading-snug
+                    ">
+                      {step.title}
+                    </h3>
                   </div>
-                </ScrollReveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+                </div>
+
+                {/* DESCRIPTION */}
+                <p className="
+                  text-muted-foreground
+                  mb-4
+                  leading-relaxed
+                  text-sm sm:text-base
+                ">
+                  {step.desc}
+                </p>
+
+                {/* DETAILS */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {step.details?.map((d, index) => (
+                    <div
+                      key={index}
+                      className="
+                        flex items-start gap-2
+                        text-xs sm:text-sm
+                        text-muted-foreground
+                      "
+                    >
+                      <CheckCircle
+                        size={14}
+                        className="text-neon-purple shrink-0 mt-[2px]"
+                      />
+                      <span>{d}</span>
+                    </div>
+                  ))}
+                </div>
+
+              </GlowCard>
+            </div>
+          </ScrollReveal>
+        );
+      })}
+    </div>
+  </div>
+</section>
 
       {/* CTA */}
       <section className="section-padding">

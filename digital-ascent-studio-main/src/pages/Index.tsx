@@ -109,49 +109,80 @@ useEffect(()=>{
       <ClientLogos />
 
       {/* Services */}
-      {!loading && services.length > 0 && (
-<section className="py-20 px-4 relative">
+{!loading && services.length > 0 && (
+<section className="relative py-14 sm:py-16 md:py-20 px-4 overflow-hidden">
 
-  <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
+  {/* BACKGROUND */}
+  <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background pointer-events-none" />
 
-  <BlurIn className="text-center mb-12">
-    <span className="text-neon-purple text-sm font-semibold uppercase tracking-widest">
+  {/* HEADING */}
+  <BlurIn className="text-center mb-10 sm:mb-12 relative z-10">
+    <span className="text-neon-purple text-xs sm:text-sm font-semibold uppercase tracking-widest">
       What We Do
     </span>
 
-    <h2 className="font-heading text-3xl md:text-5xl font-bold mt-3">
+    <h2 className="font-heading font-bold mt-3 text-[clamp(26px,6vw,48px)]">
       Our <span className="gradient-text">Services</span>
     </h2>
   </BlurIn>
 
-  <div className="container mx-auto">
-    <StaggerContainer className="grid grid-cols-2 md:grid-cols-5 gap-4">
+  <div className="max-w-7xl mx-auto relative z-10">
+
+    <StaggerContainer
+      className="
+        grid
+        grid-cols-1
+        xs:grid-cols-2
+        md:grid-cols-3
+        lg:grid-cols-5
+        gap-4 sm:gap-5
+      "
+    >
 
       {services.map((s:any) => {
         const IconComponent = Icons[s.icon] || Code2;
 
         return (
           <StaggerItem key={s._id}>
-            <Link to="/services">
+            <Link to="/services" className="block h-full">
 
-              <GlowCard className="p-6 text-center h-full">
+              <GlowCard
+                className="
+                  h-full
+                  text-center
+                  p-5 sm:p-6
+                  transition-all duration-300
+                  hover:-translate-y-1
+                "
+              >
 
+                {/* ICON */}
                 <motion.div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
+                  className="
+                    mx-auto mb-4
+                    flex items-center justify-center
+                    rounded-2xl
+                    w-12 h-12
+                    sm:w-14 sm:h-14
+                  "
                   transition={{ type: "spring", stiffness: 300 }}
                   style={{
                     background: `linear-gradient(135deg, ${s.gradientFrom}, ${s.gradientTo})`
-                    
                   }}
                 >
-                  <IconComponent size={24} className="text-primary-foreground" />
+                  <IconComponent
+                    size={22}
+                    className="text-primary-foreground"
+                  />
                 </motion.div>
 
-                <span className="text-sm font-semibold block mb-1">
+                {/* TITLE */}
+                <span className="block font-semibold text-sm sm:text-base mb-1 leading-snug">
                   {s.title}
                 </span>
 
-                <span className="text-xs text-muted-foreground">
+                {/* DESCRIPTION */}
+                <span className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                   {s.description}
                 </span>
 
@@ -222,56 +253,93 @@ useEffect(()=>{
             </SlideIn>
 
             <SlideIn direction="right">
-              <div className="relative">
-                <GradientBorderCard className="p-0">
-                  <div className="p-8 space-y-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <Sparkles className="text-neon-purple" size={24} />
-                      <span className="font-heading font-bold text-lg">We Build</span>
-                    </div>
-                    <div className="font-heading text-2xl md:text-3xl font-bold h-12">
-                      <TypingText
-texts={about?.typingTexts?.map(t=>t.text) || []}  className="gradient-text"
+  <div className="relative w-full max-w-[520px] mx-auto">
 
-/>
-                    </div>
-                    <div className="grid grid-cols-3 gap-4 pt-4 border-t border-glass-border/20">
-                       {stats.map((stat, i) => (
-                      
-                                  <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: i * 0.1 }}
-                                    className="text-center"
-                                  >
-                      
-                                    <div className="font-heading text-xl font-bold gradient-text">
-                      
-                                      <SmoothCounter
-                                        target={stat.value}
-                                        suffix={stat.suffix}
-                                      />
-                      
-                                    </div>
-                      
-                                    <p className="text-xs text-muted-foreground">
-                                      {stat.label}
-                                    </p>
-                      
-                                  </motion.div>
-                      
-                                ))}
-                    </div>
-                  </div>
-                </GradientBorderCard>
-                <motion.div
-                  className="absolute -z-10 -top-4 -right-4 w-full h-full rounded-xl bg-neon-purple/10 blur-xl"
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 4, repeat: Infinity }}
+    <GradientBorderCard className="p-0">
+      <div className="p-[clamp(1.25rem,4vw,2rem)] space-y-6">
+
+        {/* HEADER */}
+        <div className="flex items-center gap-3 mb-2">
+          <Sparkles className="text-neon-purple shrink-0" size={22} />
+          <span className="font-heading font-bold text-base sm:text-lg">
+            We Build
+          </span>
+        </div>
+
+        {/* TYPING TITLE */}
+        <div
+          className="
+            font-heading
+            font-bold
+            min-h-[2.5rem]
+            sm:min-h-[3rem]
+            text-[clamp(20px,5vw,32px)]
+            leading-tight
+            break-words
+          "
+        >
+          <TypingText
+            texts={about?.typingTexts?.map(t => t.text) || []}
+            className="gradient-text"
+          />
+        </div>
+
+        {/* STATS */}
+        <div
+          className="
+            grid
+            grid-cols-3
+            gap-3 sm:gap-4
+            pt-4
+            border-t border-glass-border/20
+          "
+        >
+          {stats.map((stat, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="text-center"
+            >
+              <div className="font-heading font-bold gradient-text text-[clamp(16px,4vw,22px)]">
+                <SmoothCounter
+                  target={stat.value}
+                  suffix={stat.suffix}
                 />
               </div>
-            </SlideIn>
+
+              <p className="text-[11px] sm:text-xs text-muted-foreground leading-tight">
+                {stat.label}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+      </div>
+    </GradientBorderCard>
+
+    {/* BACK GLOW (SAFE SIZE) */}
+    <motion.div
+      className="
+        pointer-events-none
+        absolute
+        -z-10
+        -top-3
+        -right-3
+        w-[90%]
+        h-[90%]
+        rounded-xl
+        bg-neon-purple/10
+        blur-xl
+      "
+      animate={{ scale: [1, 1.05, 1] }}
+      transition={{ duration: 4, repeat: Infinity }}
+    />
+
+  </div>
+</SlideIn>
           </div>
         </div>
       </section>

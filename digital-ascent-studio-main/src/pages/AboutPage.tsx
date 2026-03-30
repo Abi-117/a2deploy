@@ -141,49 +141,47 @@ const AboutPage = () => {
     </section>
 
     {/* Stats */}
-    <section className="py-20 px-4 relative">
-       <div className="absolute inset-0 bg-gradient-to-r from-neon-purple/5 via-neon-blue/5 to-neon-pink/5" />
+    <section className="py-16 md:py-20 px-4 relative overflow-hidden">
 
-       <div className="container mx-auto">
+  {/* Background Gradient */}
+  <div className="absolute inset-0 bg-gradient-to-r from-neon-purple/5 via-neon-blue/5 to-neon-pink/5 pointer-events-none" />
 
+  <div className="container mx-auto relative z-10">
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+    {/* Responsive Grid */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
 
+      {stats.map((stat, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: i * 0.1 }}
+        >
+          <GlowCard className="p-5 sm:p-6 md:p-8 text-center h-full">
 
-          {stats.map((stat, i) => (
-            <GlowCard className="p-6 md:p-8 text-center">
+            {/* Counter */}
+            <div className="text-3xl sm:text-4xl font-bold gradient-text">
+              <SmoothCounter
+                target={stat.value}
+                suffix={stat.suffix}
+              />
+            </div>
 
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="text-center"
-            >
+            {/* Label */}
+            <p className="text-xs sm:text-sm text-muted-foreground mt-2">
+              {stat.label}
+            </p>
 
-              <div className="text-4xl font-bold gradient-text">
+          </GlowCard>
+        </motion.div>
+      ))}
 
-                <SmoothCounter
-                  target={stat.value}
-                  suffix={stat.suffix}
-                />
+    </div>
 
-              </div>
-
-              <p className="text-sm text-muted-foreground">
-                {stat.label}
-              </p>
-
-            </motion.div>
-            </GlowCard>
-
-          ))}
-
-        </div>
-
-      </div>
-
-    </section>
+  </div>
+</section>
 
     {/* Our Story */}
     <section className="section-padding relative">

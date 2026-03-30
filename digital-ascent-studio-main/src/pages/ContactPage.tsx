@@ -10,6 +10,16 @@ import { Mail, Phone, MapPin, Send, MessageCircle, Clock, Instagram, Linkedin, T
 const ContactPage = () => {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", service: "", budget: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const InputField = ({ label, type = "text", placeholder }) => (
+  <div>
+    <label className="text-sm font-medium mb-2 block">{label}</label>
+    <input
+      type={type}
+      placeholder={placeholder}
+      className="input-style"
+    />
+  </div>
+);
 
   // const handleSubmit = (e: React.FormEvent) => {
   //   e.preventDefault();
@@ -74,219 +84,300 @@ ${formData.message}
       </section>
 
       {/* Quick Contact Cards */}
-      <section className="px-4 -mt-4">
-        <div className="container mx-auto max-w-6xl">
-          <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { icon: Phone, label: "Call Us", value: "+91 99528 13292", color: "from-neon-purple to-neon-blue" },
-              { icon: Mail, label: "Email", value: "asquaresolutions22@gmail.com", color: "from-neon-blue to-accent" },
-              { icon: MessageCircle, label: "WhatsApp", value: "+91 99528 13292",color: "from-green-500 to-green-600" },
-              { icon: Clock, label: "Hours", value: "Mon-Fri 9-6", color: "from-neon-pink to-neon-purple" },
-            ].map((item) => (
-              <StaggerItem key={item.label}>
-                <GlowCard className="p-4 text-center">
-                  <motion.div
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center mx-auto mb-3`}
-                    whileHover={{ rotate: 10, scale: 1.1 }}
-                  >
-                    <item.icon size={20} className="text-primary-foreground" />
-                  </motion.div>
-                  <span className="text-xs text-muted-foreground uppercase tracking-wider block">{item.label}</span>
-                  <span className="text-sm font-semibold mt-1 block">{item.value}</span>
-                </GlowCard>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
+      <section className="px-3 sm:px-4 -mt-2 sm:-mt-4">
+  <div className="container mx-auto max-w-6xl">
+
+    <StaggerContainer
+      className="
+        grid
+        grid-cols-1
+        xs:grid-cols-2
+        md:grid-cols-4
+        gap-3 sm:gap-4
+      "
+    >
+      {[
+        {
+          icon: Phone,
+          label: "Call Us",
+          value: "+91 99528 13292",
+          color: "from-neon-purple to-neon-blue",
+        },
+        {
+          icon: Mail,
+          label: "Email",
+          value: "asquaresolutions22@gmail.com",
+          color: "from-neon-blue to-accent",
+        },
+        {
+          icon: MessageCircle,
+          label: "WhatsApp",
+          value: "+91 99528 13292",
+          color: "from-green-500 to-green-600",
+        },
+        {
+          icon: Clock,
+          label: "Hours",
+          value: "Mon–Fri 9–6",
+          color: "from-neon-pink to-neon-purple",
+        },
+      ].map((item) => (
+        <StaggerItem key={item.label}>
+          <GlowCard className="p-4 sm:p-5 text-center h-full">
+
+            {/* ICON */}
+            <motion.div
+              className={`
+                w-10 h-10
+                sm:w-12 sm:h-12
+                rounded-xl
+                bg-gradient-to-br ${item.color}
+                flex items-center justify-center
+                mx-auto mb-3
+              `}
+              whileHover={{ rotate: 10, scale: 1.1 }}
+            >
+              <item.icon
+                size={18}
+                className="text-primary-foreground sm:w-5 sm:h-5"
+              />
+            </motion.div>
+
+            {/* LABEL */}
+            <span className="
+              text-[10px] sm:text-xs
+              text-muted-foreground
+              uppercase tracking-wider
+              block
+            ">
+              {item.label}
+            </span>
+
+            {/* VALUE */}
+            <span className="
+              text-xs sm:text-sm
+              font-semibold
+              mt-1 block
+              break-words
+              leading-snug
+            ">
+              {item.value}
+            </span>
+
+          </GlowCard>
+        </StaggerItem>
+      ))}
+    </StaggerContainer>
+
+  </div>
+</section>
 
       {/* Contact Content */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
-            {/* Info */}
-            <div className="lg:col-span-2 space-y-6">
-              <ScrollReveal direction="left">
-                <h3 className="font-heading text-2xl font-bold mb-4">Get in Touch</h3>
-                <p className="text-muted-foreground mb-8">
-                  Have a project in mind? Reach out and let's create something amazing together. 
-                  We respond to all inquiries within 24 hours.
+      <section className="py-14 sm:py-20 px-3 sm:px-4">
+  <div className="container mx-auto">
+
+    {/* GRID */}
+    <div className="
+      grid
+      grid-cols-1
+      lg:grid-cols-5
+      gap-10 lg:gap-12
+      max-w-6xl mx-auto
+    ">
+
+      {/* ================= INFO ================= */}
+      <div className="lg:col-span-2 space-y-6">
+
+        <ScrollReveal direction="left">
+          <h3 className="font-heading text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
+            Get in Touch
+          </h3>
+
+          <p className="text-muted-foreground text-sm sm:text-base mb-6 sm:mb-8 leading-relaxed">
+            Have a project in mind? Reach out and let's create something amazing together.
+            We respond to all inquiries within 24 hours.
+          </p>
+        </ScrollReveal>
+
+        {[
+          { icon: Mail, label: "Email", value: "asquaresolutions22@gmail.com" },
+          { icon: Phone, label: "Phone", value: "+91 99528 13292" },
+          { icon: MapPin, label: "Location", value: "Chennai, India" },
+          { icon: Clock, label: "Hours", value: "Mon - Fri, 9AM - 6PM" },
+        ].map(({ icon: Icon, label, value }, i) => (
+          <ScrollReveal key={label} delay={i * 0.1} direction="left">
+            <motion.div
+              className="
+                glass-card-hover
+                p-3 sm:p-4
+                flex items-center gap-3 sm:gap-4
+              "
+              whileHover={{ x: 5 }}
+            >
+              <div className="
+                w-9 h-9 sm:w-10 sm:h-10
+                rounded-xl
+                bg-neon-purple/10
+                flex items-center justify-center
+                shrink-0
+              ">
+                <Icon size={16} className="text-neon-purple" />
+              </div>
+
+              <div className="min-w-0">
+                <span className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider">
+                  {label}
+                </span>
+
+                {/* prevents email overflow */}
+                <p className="text-xs sm:text-sm font-medium break-words">
+                  {value}
                 </p>
-              </ScrollReveal>
+              </div>
+            </motion.div>
+          </ScrollReveal>
+        ))}
 
+        {/* WHATSAPP */}
+        <ScrollReveal delay={0.4} direction="left">
+          <motion.a
+            href="https://wa.me/919952813292"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              inline-flex items-center gap-2
+              px-5 py-3 sm:px-6 sm:py-3
+              rounded-xl
+              bg-green-600
+              text-primary-foreground
+              font-semibold
+              mt-2 sm:mt-4
+              w-full justify-center
+              text-sm sm:text-base
+            "
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+          >
+            <MessageCircle size={18} />
+            Chat on WhatsApp
+          </motion.a>
+        </ScrollReveal>
+
+        {/* SOCIAL */}
+        <ScrollReveal delay={0.5} direction="left">
+          <div className="pt-2 sm:pt-4">
+            <p className="text-xs sm:text-sm text-muted-foreground mb-3">
+              Follow us
+            </p>
+
+            <div className="flex gap-3 flex-wrap">
               {[
-                { icon: Mail, label: "Email", value: "asquaresolutions22@gmail.com" },
-                { icon: Phone, label: "Phone", value: "+91 99528 13292" },
-                { icon: MapPin, label: "Location", value: "Chennai, India" },
-                { icon: Clock, label: "Hours", value: "Mon - Fri, 9AM - 6PM" },
-              ].map(({ icon: Icon, label, value }, i) => (
-                <ScrollReveal key={label} delay={i * 0.1} direction="left">
-                  <motion.div
-                    className="glass-card-hover p-4 flex items-center gap-4"
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-neon-purple/10 flex items-center justify-center shrink-0">
-                      <Icon size={18} className="text-neon-purple" />
-                    </div>
-                    <div>
-                      <span className="text-xs text-muted-foreground uppercase tracking-wider">{label}</span>
-                      <p className="text-sm font-medium">{value}</p>
-                    </div>
-                  </motion.div>
-                </ScrollReveal>
-              ))}
-
-              <ScrollReveal delay={0.4} direction="left">
+                { icon: Instagram, href: "#" },
+                { icon: Linkedin, href: "#" },
+                { icon: Youtube, href: "#" },
+                { icon: Facebook, href: "#" },
+              ].map(({ icon: Icon, href }, i) => (
                 <motion.a
-                  href="https://wa.me/919952813292"
+                  key={i}
+                  href={href}
                   target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-green-600 text-primary-foreground font-semibold mt-4 w-full justify-center"
-                  whileHover={{ scale: 1.05, backgroundColor: "hsl(142, 71%, 35%)" }}
+                  className="
+                    w-9 h-9 sm:w-10 sm:h-10
+                    rounded-lg
+                    glass-card
+                    flex items-center justify-center
+                    text-muted-foreground
+                    hover:text-neon-purple
+                    transition-all
+                  "
+                  whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <MessageCircle size={18} />
-                  Chat on WhatsApp
+                  <Icon size={16} />
                 </motion.a>
-              </ScrollReveal>
-
-              {/* Social Links */}
-              <ScrollReveal delay={0.5} direction="left">
-                <div className="pt-4">
-                  <p className="text-sm text-muted-foreground mb-3">Follow us</p>
-                  <div className="flex gap-3">
-                    {[
-                      { icon: Instagram, href: "https://www.instagram.com/a_square_solutions?igsh=cGZ5MWp3cGR2YnB6" },
-                      { icon: Linkedin, href: "https://www.linkedin.com/company/a-square-solutions-2/" },
-                      { icon: Youtube, href: "https://youtube.com/@a_square_solutions?si=xr0stucqnHMgk1HL" },
-                      { icon: Facebook, href: "https://www.facebook.com/people/A-Square-Solutions/61585239463632/?rdid=s5PkiLpOBhvLcapR&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1H3pUY92HR%2F" },
-                    ].map(({ icon: Icon, href }, i) => (
-                      <motion.a
-                        key={i}
-                        href={href}
-                        target="_blank"
-                        className="w-10 h-10 rounded-lg glass-card flex items-center justify-center text-muted-foreground hover:text-neon-purple hover:border-neon-purple/40 transition-all duration-300"
-                        whileHover={{ scale: 1.1, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Icon size={18} />
-                      </motion.a>
-                    ))}
-                  </div>
-                </div>
-              </ScrollReveal>
-            </div>
-
-            {/* Form */}
-            <div className="lg:col-span-3">
-              <ScrollReveal direction="right">
-                <form onSubmit={handleSubmit} className="glass-card p-8 space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">Your Name *</label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg bg-secondary border border-glass-border/30 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-neon-purple/50 transition-colors"
-                        placeholder="John Doe"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">Your Email *</label>
-                      <input
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg bg-secondary border border-glass-border/30 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-neon-purple/50 transition-colors"
-                        placeholder="john@example.com"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">Phone</label>
-                      <input
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg bg-secondary border border-glass-border/30 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-neon-purple/50 transition-colors"
-                        placeholder="+91 99999 99999"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">Service</label>
-                      <select
-                        value={formData.service}
-                        onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg bg-secondary border border-glass-border/30 text-foreground focus:outline-none focus:border-neon-purple/50 transition-colors"
-                      >
-                        <option value="">Select a service</option>
-                        <option value="web">Web Development</option>
-                        <option value="seo">SEO Optimization</option>
-                        <option value="marketing">Digital Marketing</option>
-                        <option value="ads">Paid Ads</option>
-                        <option value="branding">Branding & Design</option>
-                        <option value="ecommerce">E-Commerce</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                  </div>
-                  {/* <div>
-                    <label className="text-sm font-medium mb-2 block">Budget Range</label>
-                    <select
-                      value={formData.budget}
-                      onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg bg-secondary border border-glass-border/30 text-foreground focus:outline-none focus:border-neon-purple/50 transition-colors"
-                    >
-                      <option value="">Select budget range</option>
-                      <option value="10k-25k">₹10,000 - ₹25,000</option>
-                      <option value="25k-50k">₹25,000 - ₹50,000</option>
-                      <option value="50k-1l">₹50,000 - ₹1,00,000</option>
-                      <option value="1l+">₹1,00,000+</option>
-                    </select>
-                  </div> */}
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">Message *</label>
-                    <textarea
-                      required
-                      rows={5}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg bg-secondary border border-glass-border/30 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-neon-purple/50 transition-colors resize-none"
-                      placeholder="Tell us about your project, goals, and timeline..."
-                    />
-                  </div>
-                  <motion.button
-                    type="submit"
-                    className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-neon-purple to-neon-blue text-primary-foreground font-semibold"
-                    whileHover={{ scale: 1.02, boxShadow: "0 0 30px -5px hsl(260 80% 60% / 0.5)" }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    {/* {submitted ? (
-                      <motion.span
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        className="flex items-center gap-2"
-                      >
-                        Message Sent! ✓
-                      </motion.span>
-                    ) : (
-                      <> */}
-                        <Send size={18} />
-                        Send Message
-                      {/* </>
-                    )} */}
-                  </motion.button>
-                </form>
-              </ScrollReveal>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </ScrollReveal>
+
+      </div>
+
+      {/* ================= FORM ================= */}
+      <div className="lg:col-span-3">
+        <ScrollReveal direction="right">
+
+          <form
+            onSubmit={handleSubmit}
+            className="
+              glass-card
+              p-4 sm:p-6 md:p-8
+              space-y-4 sm:space-y-5
+            "
+          >
+
+            {/* NAME + EMAIL */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              <InputField label="Your Name *" placeholder="John Doe" />
+              <InputField label="Your Email *" type="email" placeholder="john@example.com" />
+            </div>
+
+            {/* PHONE + SERVICE */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              <InputField label="Phone" placeholder="+91 99999 99999" />
+
+              <div>
+                <label className="text-sm font-medium mb-2 block">Service</label>
+                <select className="input-style">
+                  <option>Select a service</option>
+                  <option>Web Development</option>
+                  <option>SEO Optimization</option>
+                  <option>Digital Marketing</option>
+                  <option>Branding & Design</option>
+                  <option>E-Commerce Solutions</option>
+                  <option value="">Other</option>
+
+                </select>
+              </div>
+            </div>
+
+            {/* MESSAGE */}
+            <div>
+              <label className="text-sm font-medium mb-2 block">Message *</label>
+              <textarea
+                rows={4}
+                required
+                className="input-style resize-none"
+                placeholder="Tell us about your project..."
+              />
+            </div>
+
+            {/* SUBMIT */}
+            <motion.button
+              type="submit"
+              className="
+                w-full
+                inline-flex items-center justify-center gap-2
+                px-6 py-3 sm:px-8 sm:py-4
+                rounded-xl
+                bg-gradient-to-r from-neon-purple to-neon-blue
+                text-primary-foreground
+                font-semibold
+                text-sm sm:text-base
+              "
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Send size={18} />
+              Send Message
+            </motion.button>
+
+          </form>
+        </ScrollReveal>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* Map placeholder */}
       <section className="px-4 pb-20">
