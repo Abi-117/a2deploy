@@ -94,7 +94,7 @@ const HeroSection = () => {
   if (!hero) return null;
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden animated-gradient-bg px-2">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden animated-gradient-bg px-4">
 
       {/* BACKGROUND BLOBS (responsive) */}
       <motion.div
