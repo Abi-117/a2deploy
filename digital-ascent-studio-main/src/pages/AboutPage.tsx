@@ -203,11 +203,11 @@ const AboutPage = () => {
               {titleParts[1]}
             </h2>
 
-            <p className="text-muted-foreground mb-4">
+            <p className="text-muted-foreground text-justify mb-4">
               {ourStoryData.story.paragraph1}
             </p>
 
-            <p className="text-muted-foreground mb-6">
+            <p className="text-muted-foreground text-justify mb-6">
               {ourStoryData.story.paragraph2}
             </p>
 
