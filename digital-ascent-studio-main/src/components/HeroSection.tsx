@@ -140,7 +140,7 @@ const HeroSection = () => {
         style={{ textAlign: hero.align || "center" }}
       >
         {/* BADGE */}
-        <motion.div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-glass-border/40 bg-glass/30 backdrop-blur-sm mb-6 text-sm text-muted-foreground">
+        <motion.div className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-glass-border/40 bg-glass/30 backdrop-blur-sm mb-6 text-sm text-muted-foreground">
           {hero.badgeText}
         </motion.div>
 
